@@ -3,7 +3,7 @@ import React from 'react';
 import createStore from 'lib/createStore';
 import { Provider } from 'react-redux';
 
-import HelloApp from 'components/HelloApp/HelloApp';
+import Nav from 'components/Nav/Nav';
 
 const store = createStore();
 
@@ -11,7 +11,7 @@ class App extends React.Component {
   render() {
     return (
       <Provider {...{ store }}>
-        { () => <HelloApp/>}
+        { () => <Nav/>}
       </Provider>
     );
   }

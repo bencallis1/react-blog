@@ -2,13 +2,13 @@
   "name": "react-blog",
   "version": "0.0.16",
   "description": "Seed project for React apps using ES6 & webpack.",
-  "repository": "https://github.com/badsyntax/react-seed",
+  "repository": "https://github.com/bencallis1/react-blog",
   "license": "MIT",
   "config": {
     "buildDir": "./build",
     "buildDirTests": "./build_tests",
     "devHost": "0.0.0.0",
-    "devPort": 8000
+    "devPort": 8080
   },
   "scripts": {
     "build": "NODE_ENV=production npm run webpack",
