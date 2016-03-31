@@ -2,6 +2,7 @@ import React from 'react';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
 import styles from './Nav.css'
 
 @connect(({ mainStore }) => ({ mainStore }))
@@ -10,7 +11,7 @@ class HelloApp extends React.Component {
     const {mainStore, dispatch} = this.props;
 
     return (
-        <header className="header">
+        <header className={styles.header}>
           <nav>
             Something
           </nav>
