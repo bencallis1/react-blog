@@ -1,19 +1,14 @@
 import React from 'react';
 
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+require("./Nav.css");
 
-import styles from './Nav.css'
-
-@connect(({ mainStore }) => ({ mainStore }))
-class HelloApp extends React.Component {
+class Nav extends React.Component {
   render() {
-    const {mainStore, dispatch} = this.props;
 
     return (
-        <header className={styles.header}>
+        <header className="header">
           <nav>
-            Something
+            Does the hot reload work
           </nav>
         </header>
 
@@ -21,4 +16,4 @@ class HelloApp extends React.Component {
   }
 }
 
-export default HelloApp;
+export default Nav;

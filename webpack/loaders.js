@@ -38,7 +38,8 @@ if (DEBUG || TEST) {
 
   cssLoader = ExtractTextPlugin.extract('style-loader', [
     'css-loader',
-    'postcss-loader'
+    'postcss-loader',
+    'style-loader'
   ].join('!'));
 }
 
@@ -50,7 +51,7 @@ var loaders = [
   },
   {
     test: /\.css$/,
-    loader: cssLoader
+    "loader": "style!css"
   },
   {
     test: /\.jpe?g$|\.gif$|\.png$|\.ico|\.svg$|\.woff$|\.ttf$/,
