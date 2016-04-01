@@ -1,5 +1,17 @@
+.list-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
 .list-group-item {
     list-style: none;
-    width: 33%;
+    width: 180px;
     float: left;
+    margin: 15px;
+}
+
+.list-group-item img {
+    width: 100%;
 }

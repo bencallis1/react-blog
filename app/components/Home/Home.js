@@ -1,13 +1,15 @@
 import React from 'react';
 import PhotoGrid from '../image-block/image-block';
-import getImageInfo from '../../utils/helpers';
+import Profile from '../Profile/Profile';
 
-
+require('./Home.css')
 class Home extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            images: []
+            images: [],
+            user: {},
+            intro: ''
 
         }
     }
@@ -17,14 +19,11 @@ class Home extends React.Component {
     }
 
     init(){
-        getImageInfo()
         this.setState({
             images:[
                 {link: "http://i.imgur.com/qnrZywz.png"},
                 {link: "http://i.imgur.com/n6L7NHH.png"},
                 {link: "http://i.imgur.com/MLC2rKT.png"},
-                {link: "http://i.imgur.com/QWXjj9r.png"},
-                {link: "http://i.imgur.com/gqZ7D0N.png"},
                 {link: "http://i.imgur.com/11Llp8Q.png"},
                 {link: "http://i.imgur.com/QT0BNBP.png"},
                 {link: "http://i.imgur.com/YN0TWva.png"},
@@ -32,19 +31,22 @@ class Home extends React.Component {
                 {link: "http://i.imgur.com/lgwnPrn.png"},
                 {link: "http://i.imgur.com/tblnRoN.png"},
                 {link: "http://i.imgur.com/24XSc6v.png"},
+                {link: "http://i.imgur.com/QWXjj9r.png"},
+                {link: "http://i.imgur.com/gqZ7D0N.png"}
 
+            ],
+            intro: 'Hi, I am lisa and I Blog About Life',
+            user: {userImage:"http://i.imgur.com/L5ZmyEk.png"}
 
-            ]
     })
-
-
     }
 
     render(){
         return (
-            <h2 className="text-center">
+            <div className="main-home-container">
                 <PhotoGrid imageInfo={this.state.images} />
-            </h2>
+                <Profile user={this.state.user} intro={this.state.intro}/>
+            </div>
         )
     }
 

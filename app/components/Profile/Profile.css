@@ -1,0 +1,19 @@
+.profile-container {
+    width:50%;
+    background: #E5F3F3;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.profile-image {
+    border-radius: 50%;
+    width:70%;
+}
+
+.profile-intro {
+    margin-top: 16px;
+    font-size: 18px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}

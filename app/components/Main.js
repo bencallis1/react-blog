@@ -1,6 +1,8 @@
 import React from 'react';
 import Home from './Home/Home';
 import Nav from './Nav/Nav';
+import Profile from './Profile/Profile';
+
 
 const Main = () => {
 
@@ -8,7 +10,7 @@ const Main = () => {
     <div className="main-container">
       <nav className="" role="">
         <div className="">
-           <Nav />
+
             <Home />
         </div>
       </nav>
