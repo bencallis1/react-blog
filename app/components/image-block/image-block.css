@@ -1,0 +1,70 @@
+.imageGridItem {
+    display: inline-block;
+    box-sizing: border-box;
+    float: left;
+    padding: 10px;
+    overflow: hidden;
+    position: relative;
+    transition: all .5s linear;
+    transition-delay: .1s;
+}
+.imageWrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    transition: all .5s linear;
+
+    cursor: pointer;
+    box-shadow:0 10px 6px -6px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+.imageGridItem:hover .imageWrapper{
+    background-position: right;
+}
+
+.column1 {
+    width: 100%;
+    transition: all .5s linear;
+}
+.column1Image {
+    float:left;
+    width:30%;
+    margin-right: 10px;
+    padding-bottom: 30%;
+    transition: all .5s linear;
+}
+
+
+.lightbox {
+    opacity: 1;
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.88);
+    visibility: visible;
+    transition: all .5s ;
+}
+
+.lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.hide {
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility .3s, opacity .3s linear;
+
+}
