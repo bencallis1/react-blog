@@ -2,13 +2,12 @@
 // use .map over an array of image objects
 
 import React, {PropTypes} from 'react';
-import styles from './image-block.css';
+require('./image-block.css');
 
 class PhotoGrid extends React.Component {
     static propTypes = {
-        photos : PropTypes.array /* { src, id, bigSrc}*/,
-        columns : PropTypes.number,
-        InformationElement : React.PropTypes.func
+        photos : PropTypes.array,
+        columns : PropTypes.number
     };
 
     constructor() {
@@ -22,14 +21,13 @@ class PhotoGrid extends React.Component {
         return (
             <div >
                 {this.getGridElements()}
-                {this.getFullScreenImage(this.state.fullScreenImage)}
             </div>
         );
     }
 
     getGridElements() {
         const {photos}  = this.props;
-        const classNames = this.isShowInfo() ? [styles.imageGridItem, styles.column1] : [styles.imageGridItem];
+        const className = "imageGridItem";
         const style = this.isShowInfo() ? {} : {width : this.getPercentWidth() + '%'};
 
         return photos.map(photo => (
@@ -44,13 +42,11 @@ class PhotoGrid extends React.Component {
 
     getImageElement = (photo) => {
         const {InformationElement} = this.props;
-        const classNames = this.isShowInfo() ? [styles.imageWrapper, styles.column1Image] : [styles.imageWrapper];
         const style = {backgroundImage : `url(${photo.src})`};
 
         return (
             <div >
                 <div className={classNames.join(' ')}
-                     onClick={this.image_clickHandler(photo).bind(this)}
                      style={style}>
                 </div>
                 {this.isShowInfo() ? <InformationElement photo={photo}/> : null }
@@ -59,32 +55,8 @@ class PhotoGrid extends React.Component {
         );
     };
 
-    getFullScreenImage = (src) => {
-        const classNames = src ? [styles.lightbox] : [styles.hide,styles.lightbox ];
-        return (
-            <a href="#_" className={classNames.join(' ')} onClick={this.fullScreenImage_clickHandler.bind(this)}>
-                <img src={src} />
-            </a>);
-    };
-
-
-    image_clickHandler(photo) {
-        return function () {
-            this.setState({
-                fullScreenImage : photo.bigSrc
-            })
-        }
-    }
-
-    fullScreenImage_clickHandler() {
-        this.setState({
-            fullScreenImage : null
-        })
-    }
-
-    isShowInfo = () => this.props.columns == 1;
-    getPercentWidth = () => 100 / this.props.columns - 1;
 }
 
+// Add image event handler for the click
 
 export default PhotoGrid
