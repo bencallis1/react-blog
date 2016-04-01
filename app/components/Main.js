@@ -1,4 +1,5 @@
 import React from 'react';
+import Home from './Home/Home';
 import Nav from './Nav/Nav';
 
 const Main = () => {
@@ -8,6 +9,7 @@ const Main = () => {
       <nav className="" role="">
         <div className="">
            <Nav />
+            <Home />
         </div>
       </nav>
       <div className="">

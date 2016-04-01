@@ -1,6 +1,6 @@
 import React from 'react';
 
-require("./Nav.css")
+require("./Nav.css");
 
 export default function Nav () {
     return (
