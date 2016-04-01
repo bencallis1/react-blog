@@ -3,6 +3,7 @@ module.exports = {
   output: {
     filename: "public/bundle.js"
   },
+
   module: {
     loaders: [
       {
@@ -12,7 +13,9 @@ module.exports = {
         query: {
           presets: ['react', 'es2015']
         }
-      }
+      },
+      {test: /\.css$/, loader: 'style!css', exclude: /node_modules/},
+      {test: /\.png$/, loader: 'url', exclude: /node_modules/}
     ]
   }
-}
+};
