@@ -7,12 +7,11 @@ require('./image-block.css');
 const PhotoGrid = ({imageInfo}) => {
     return (
         <div>
-            <h3> Here are the images</h3>
             <ul className="grid-list">
                 {imageInfo.map((image, index) => {
                     return (
-                        <li className="list-group-item" key={image.name}>
-                            <img src={image.url} alt={image.name}/>
+                        <li className="list-group-item" >
+                            <img src={image.link} alt={image.name}/>
                         </li>
                     )
                 })}
