@@ -1,14 +1,15 @@
-import React from 'react';
-
+import React, {PropTypes} from 'react';
+import { Link } from 'react-router';
 require("./Nav.css");
 
-export default function Nav () {
+const Nav = () => {
     return (
-        <header className="main-header">
-            <h2 className="text-center">
-                This is the main header
-            </h2>
-        </header>
+        <div className="nav-main-container">
+            <nav>
 
-    )
+            </nav>
+        </div>
+    );
 }
+
+export default Nav

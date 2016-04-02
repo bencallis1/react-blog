@@ -8,10 +8,14 @@
 .list-group-item {
     list-style: none;
     width: 180px;
-    float: left;
     margin: 15px;
+    display: inline-block;
 }
 
 .list-group-item img {
     width: 100%;
+}
+
+.grid-list {
+    text-align: center;
 }

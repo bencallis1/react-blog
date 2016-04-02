@@ -9,14 +9,10 @@
   "author": "Tyler McGinnis <tylermcginnis33@gmail.com> (http://tylermcginnis.com)",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.8.0",
-    "firebase": "^2.3.2",
-    "history": "^1.13.1",
-    "re-base": "^1.3.1",
+    "axios": "^0.9.1",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
-    "react-router": "^1.0.1",
-    "reactfire": "^0.5.1"
+    "react-router": "^2.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.3.13",

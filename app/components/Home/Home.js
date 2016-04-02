@@ -1,8 +1,10 @@
 import React from 'react';
 import PhotoGrid from '../image-block/image-block';
 import Profile from '../Profile/Profile';
+import Nav from '../Nav/Nav';
 
-require('./Home.css')
+require('./Home.css');
+
 class Home extends React.Component {
     constructor(props){
         super(props);
@@ -10,7 +12,6 @@ class Home extends React.Component {
             images: [],
             user: {},
             intro: ''
-
         }
     }
 
@@ -35,18 +36,24 @@ class Home extends React.Component {
                 {link: "http://i.imgur.com/gqZ7D0N.png"}
 
             ],
-            intro: 'Hi, I am lisa and I Blog About Life',
+
+            intro: 'Hi, I am Carly and I Blog About Life',
             user: {userImage:"http://i.imgur.com/L5ZmyEk.png"}
+
 
     })
     }
 
-    render(){
+    render(props){
         return (
+            <div>
+                <Nav />
             <div className="main-home-container">
+
                 <PhotoGrid imageInfo={this.state.images} />
-                <Profile user={this.state.user} intro={this.state.intro}/>
+                <Profile user={this.state.user} intro={this.state.intro} links={this.state.links}/>
             </div>
+        </div>
         )
     }
 
