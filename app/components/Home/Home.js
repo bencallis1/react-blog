@@ -1,7 +1,6 @@
 import React from 'react';
 import PhotoGrid from '../image-block/image-block';
 import Profile from '../Profile/Profile';
-import Nav from '../Nav/Nav';
 
 require('./Home.css');
 
@@ -46,14 +45,10 @@ class Home extends React.Component {
 
     render(props){
         return (
-            <div>
-                <Nav />
             <div className="main-home-container">
-
                 <PhotoGrid imageInfo={this.state.images} />
                 <Profile user={this.state.user} intro={this.state.intro} links={this.state.links}/>
             </div>
-        </div>
         )
     }
 
