@@ -1,18 +1,24 @@
 {
-  "name": "egghead-notetaker-updates",
+  "name": "",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Tyler McGinnis <tylermcginnis33@gmail.com> (http://tylermcginnis.com)",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.9.1",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
-    "react-router": "^2.0.1"
+    "react-router": "^2.0.1",
+    "body-parser": "^1.15.0",
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "express-session": "^1.13.0",
+    "cookie-parser": "^1.4.1",
+    "lodash": "^4.5.1"
   },
   "devDependencies": {
     "babel-core": "^6.3.13",
