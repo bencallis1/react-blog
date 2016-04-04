@@ -1,7 +1,7 @@
 import React from 'react';
 import PhotoGrid from '../image-block/image-block';
 import Profile from '../Profile/Profile';
-import getPosts from '../../utils/helpers';
+import {getUserInfo,getPosts} from '../../utils/helpers'
 require('./Home.css');
 
 class Home extends React.Component {
@@ -12,9 +12,10 @@ class Home extends React.Component {
         // Container components as smart components that are responsible for getting the state and then passing the state down
         // to the children components. We will then access the state being passed to our children component via props. The children of a
         // component are able to inherit the state via props
+
         this.state = {
-            images: [],
-            user: {},
+            cardData: [],
+            userInfo: {},
             intro: ''
         }
     }
@@ -25,21 +26,25 @@ class Home extends React.Component {
 
     init(){
         getPosts().then(function(data){
-            console.log( data.data)
             this.setState({
-                images: data.data
-
+                cardData: data.data
             })
-
-            }.bind(this))
+            }.bind(this));
+        getUserInfo().then(function(data){
+            console.log(data.data)
+            this.setState({
+                userInfo: data.data
+            })
+        }.bind(this));
 
     }
 
-    render(props){
+    render(){
         return (
             <div className="main-home-container">
-                <PhotoGrid imageInfo={this.state.images} />
-                <Profile user={this.state.user} intro={this.state.intro} />
+                <Profile user={this.state.userInfo}  />
+                <PhotoGrid cardData={this.state.cardData} />
+
             </div>
         )
     }

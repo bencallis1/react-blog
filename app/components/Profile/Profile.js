@@ -1,11 +1,11 @@
 import React, {PropTypes} from 'react';
 require('./Profile.css');
 
-const Profile = ({user,intro}) => {
+const Profile = ({user}) => {
     return (
         <div className="profile-container">
-            <img className="profile-image" src={user.userImage} alt=""/>
-            <h3 className="profile-intro">{intro}</h3>
+            <h3 className="profile-intro">{user.intro}</h3>
+            <img className="profile-image" src={user.image} alt=""/>
         </div>
     );
 };
