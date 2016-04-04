@@ -25,11 +25,11 @@ class Home extends React.Component {
 
     init(){
         getPosts().then(function(data){
-            console.log(data);
-            //this.setState({
-            //    images: data.link
-            //
-            //})
+            console.log( data.data)
+            this.setState({
+                images: data.data
+
+            })
 
             }.bind(this))
 
