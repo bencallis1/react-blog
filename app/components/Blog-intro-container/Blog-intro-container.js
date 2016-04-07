@@ -1,8 +1,8 @@
 import React from 'react';
-import PhotoGrid from '../image-block/image-block';
-import Profile from '../Profile/Profile';
-import {getUserInfo,getPosts} from '../../utils/helpers'
-require('./Home.css');
+import {usersBlogData} from '../../utils/helpers'
+import BlogImage from './Blog-image/Blog-image';
+import BlogMeta from './Blog-meta/Blog-meta';
+require('./Blog-intro-container.css');
 
 class BlogIntroContainer extends React.Component {
     constructor(props){
@@ -15,9 +15,8 @@ class BlogIntroContainer extends React.Component {
         // component are able to inherit the state via props
 
         this.state = {
-            cardData: [],
-            userInfo: {},
-            intro: ''
+            usersBlogData: []
+
         }
     }
 
@@ -26,28 +25,28 @@ class BlogIntroContainer extends React.Component {
     }
 
     init(){
-        // Here we are getting al the posts from the api/blogData route
 
-        getPosts().then(function(data){
-            this.setState({
-                cardData: data.data
-            })
-        }.bind(this));
-
-        // Here we are getting al the userInfo from the api/userInfo route
-        getUserInfo().then(function(data){
+        usersBlogData().then(function(data){
             console.log(data.data)
             this.setState({
-                userInfo: data.data
+                usersBlogData: data.data
             })
         }.bind(this));
     }
 
     render(){
         return (
-            <div className="main-home-container">
-                <Profile user={this.state.userInfo}  />
-                <PhotoGrid cardData={this.state.cardData} />
+            <div className="Blog-intro-main-container">
+                {this.state.usersBlogData.map((data,index) => {
+                    const style = index % 2 !== 0 ? {direction: "rtl", textAlign: "end"} : {};
+                    return (
+                        <div className="Blog-intro" key={data.id} style={style}>
+                            <BlogMeta metaInfo={data} />
+                            <BlogImage blogInfo={data} />
+                        </div>
+                    )
+                })}
+
             </div>
         )
     }

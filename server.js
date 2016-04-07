@@ -86,6 +86,47 @@ var userInfo =  {
 
     };
 
+var usersBlogData = [
+    {
+        username : "Sienna Belle",
+        intro: "Lorem ipsum dolor sit amet,consectetur adipiscing elit.Lorem ipsum dolor sit amet,consectetur adipiscing elit.dolor sit amet,consectetur.Lorem ipsum dolor sit amet,consectetur adipiscing elit. ",
+        image: "http://i.imgur.com/VtIi5Zu.png",
+        likeCount: 256,
+        textColor: "#45CEEF",
+        id: 1121121
+
+    },
+    {
+        username : "Carly Ray",
+        intro: "Lorem ipsum dolor sit amet,consectetur adipiscing elit.Lorem ipsum dolor sit amet,consectetur adipiscing elit.dolor sit amet,consectetur.Lorem ipsum dolor sit amet,consectetur adipiscing elit. ",
+        image: "http://i.imgur.com/ndfCD1P.png",
+        likeCount: 243,
+        textColor: "#756BEB",
+        id: 1121143
+
+    },
+    {
+        username : "Sarah Spero",
+        intro: "Lorem ipsum dolor sit amet,consectetur adipiscing elit.Lorem ipsum dolor sit amet,consectetur adipiscing elit.dolor sit amet,consectetur.Lorem ipsum dolor sit amet,consectetur adipiscing elit. ",
+        image: "http://i.imgur.com/QKQcDox.png",
+        likeCount: 232,
+        textColor: "#FF7ED9",
+        id: 1123231
+
+    }
+    //{
+    //    username : "Sarah Spero",
+    //    intro: "Lorem ipsum dolor sit amet,consectetur adipiscing elit.Lorem ipsum dolor sit amet,consectetur adipiscing elit.dolor sit amet,consectetur.Lorem ipsum dolor sit amet,consectetur adipiscing elit. ",
+    //    image: "http://i.imgur.com/tTokmsE.jpg",
+    //    likeCount: 222,
+    //    textColor: "#45CEEF",
+    //    id: 112112312331
+    //
+    //}
+];
+
+
+
 app.get('/api/blogData', function(req, res) {
     console.log('someone hit our route');
     res.send(data);
@@ -96,6 +137,10 @@ console.log('someone hit the userInfo api');
     res.send(userInfo);
 });
 
+app.get('/api/usersBlogData', function(req, res) {
+    console.log('someone hit the usersBlogData api');
+    res.send(usersBlogData);
+});
 
 
 

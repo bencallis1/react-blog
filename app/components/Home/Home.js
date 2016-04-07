@@ -1,6 +1,5 @@
 import React from 'react';
-import PhotoGrid from '../image-block/image-block';
-import Profile from '../Profile/Profile';
+import BlogIntro from '../Blog-intro-container/Blog-intro-container';
 import {getUserInfo,getPosts} from '../../utils/helpers'
 require('./Home.css');
 
@@ -21,33 +20,10 @@ class Home extends React.Component {
         }
     }
 
-    componentDidMount(){
-        this.init()
-    }
-
-    init(){
-        // Here we are getting al the posts from the api/blogData route
-
-        getPosts().then(function(data){
-            this.setState({
-                cardData: data.data
-            })
-            }.bind(this));
-
-        // Here we are getting al the userInfo from the api/userInfo route
-        getUserInfo().then(function(data){
-            console.log(data.data)
-            this.setState({
-                userInfo: data.data
-            })
-        }.bind(this));
-    }
-
     render(){
         return (
             <div className="main-home-container">
-                <Profile user={this.state.userInfo}  />
-                <PhotoGrid cardData={this.state.cardData} />
+               <BlogIntro />
             </div>
         )
     }

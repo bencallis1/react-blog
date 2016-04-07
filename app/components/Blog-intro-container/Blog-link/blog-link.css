@@ -1,0 +1,17 @@
+.blog-link-container {
+    width: 100px;
+    height: 100px;
+    background: black;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.blog-a-tag {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}

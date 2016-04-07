@@ -1,0 +1,39 @@
+.blog-meta-container {
+    width: 300px;
+    display: flex;
+    position: relative;
+
+}
+
+.blog-meta-inner-container {
+    width: 100%;
+    padding: 20px;
+}
+
+.meta-title {
+    width: 90%;
+    font-family: 'Arimo', sans-serif;
+    font-size: 44px;
+    text-align: left;
+    font-weight: 600;
+    margin-bottom: 34px;
+}
+
+
+
+.blog-meta-text {
+    width: 180px;
+    position: absolute;
+    right: 0;
+}
+
+.blog-meta-like {
+    width: 85%;
+    font-family: 'Arimo', sans-serif;
+    font-size: 30px;
+    text-align: left;
+    font-weight: 600;
+    position: absolute;
+    bottom: 43px;
+
+}

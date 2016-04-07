@@ -11,8 +11,19 @@ export let getPosts = function (){
 
 };
 
-export let getUserInfo = function (){
+export let getUserInfo = function () {
     return axios.get(`http://localhost:8080/api/userInfo`)
+        .then(function (data) {
+            return data;
+        })
+        .catch(function (data) {
+            console.log(data);
+        });
+
+};
+
+export let usersBlogData = function () {
+    return axios.get(`http://localhost:8080/api/usersBlogData`)
         .then(function (data) {
             return data;
         })
