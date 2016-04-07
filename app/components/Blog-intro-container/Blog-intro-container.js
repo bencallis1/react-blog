@@ -50,7 +50,6 @@ class BlogIntroContainer extends React.Component {
             </div>
         )
     }
-
 }
 
 

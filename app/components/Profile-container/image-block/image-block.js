@@ -1,5 +1,5 @@
 import React from 'react';
-require('./image-block.css');
+require('./Image-block.css');
 
 
 const PhotoGrid = ({cardData}) => {

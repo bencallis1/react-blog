@@ -6,7 +6,7 @@ export let getPosts = function (){
        return data;
      })
      .catch(function (data) {
-       console.log(data);
+         return data
      });
 
 };
@@ -17,7 +17,7 @@ export let getUserInfo = function () {
             return data;
         })
         .catch(function (data) {
-            console.log(data);
+            return data
         });
 
 };
@@ -28,7 +28,7 @@ export let usersBlogData = function () {
             return data;
         })
         .catch(function (data) {
-            console.log(data);
+           return data
         });
 
 };
