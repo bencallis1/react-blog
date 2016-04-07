@@ -7,7 +7,6 @@ var express = require('express'),
 
 
 app.use(cors());
-
 app.use(session({
     secret: 'cDevMountainIsfuLLofSecrets',
     resave: false,
@@ -21,7 +20,7 @@ var data =
     [
         {
             "name": "photo 1",
-            "link": "http://i.imgur.com/11Llp8Q.png",
+            "link": "http://i.imgur.com/0UOYLTZ.jpg",
             "desc": "Skateboard kitsch celiac helvetica.Stumptown portland kogi,narwhal farm-to-table readymade",
             "id" : 1
 
@@ -29,14 +28,14 @@ var data =
         },
         {
             "name": "photo 2",
-            link: "http://i.imgur.com/qnrZywz.png",
+            link: "http://i.imgur.com/AlDzXSi.jpg",
             "desc": "Skateboard kitsch celiac helvetica.Stumptown portland kogi,narwhal farm-to-table readymade",
             "id" : 2
 
         },
         {
             "name": "photo 3",
-            "link": "http://i.imgur.com/n6L7NHH.png",
+            "link": "http://i.imgur.com/gwruPpE.jpg",
             "desc": "Skateboard kitsch celiac helvetica.Stumptown portland kogi,narwhal farm-to-table readymade",
             "id" : 3
 
@@ -44,68 +43,39 @@ var data =
         },
         {
             "name": "photo 4",
-            "link": "http://i.imgur.com/MLC2rKT.png",
+            "link": "http://i.imgur.com/MjSx16d.jpg",
             "desc": "Skateboard kitsch celiac helvetica.Stumptown portland kogi,narwhal farm-to-table readymade",
             "id" : 4
 
         },
         {
             "name": "photo 5",
-            "link": "http://i.imgur.com/11Llp8Q.png",
+            "link": "http://i.imgur.com/I5VBsEJ.jpg",
             "desc": "Skateboard kitsch celiac helvetica.Stumptown portland kogi,narwhal farm-to-table readymade",
             "id" : 5
 
         },
         {
             "name": "photo 6",
-            "link": "http://i.imgur.com/QT0BNBP.png",
+            "link": "http://i.imgur.com/aPYzEIT.png",
             "desc": "Skateboard kitsch celiac helvetica.Stumptown portland kogi,narwhal farm-to-table readymade",
             "id" : 6
 
         },
         {
             "name": "photo 7",
-            "link": "http://i.imgur.com/YN0TWva.png",
+            "link": "http://i.imgur.com/k2bC3m9.jpg",
             "desc": "Skateboard kitsch celiac helvetica.Stumptown portland kogi,narwhal farm-to-table readymade",
             "id" : 7
 
         },
         {
             "name": "photo 8",
-            "link": "http://i.imgur.com/Yfi5mUk.png",
+            "link": "http://i.imgur.com/lCjlK37.jpg",
             "desc": "Skateboard kitsch celiac helvetica.Stumptown portland kogi,narwhal farm-to-table readymade",
             "id" : 8
 
-        },
-        {
-            "name": "photo 9",
-            "link": "http://i.imgur.com/lgwnPrn.png",
-            "desc": "Skateboard kitsch celiac helvetica.Stumptown portland kogi,narwhal farm-to-table readymade",
-            "id" : 9
-
-        },
-        {
-            "name": "photo 10",
-            "link": "http://i.imgur.com/tblnRoN.png",
-            "desc": "Skateboard kitsch celiac helvetica.Stumptown portland kogi,narwhal farm-to-table readymade",
-            "id" : 10
-
-        },
-        {
-            "name": "photo 11",
-            "link": "http://i.imgur.com/24XSc6v.png",
-            "desc": "Skateboard kitsch celiac helvetica.Stumptown portland kogi,narwhal farm-to-table readymade",
-            "id" : 11
-
-        },
-        {
-            "name": "photo 12",
-            "link": "http://i.imgur.com/QWXjj9r.png",
-            "desc": "Skateboard kitsch celiac helvetica.Stumptown portland kogi,narwhal farm-to-table readymade",
-            "id" : 12
-
         }
-
 
     ];
 

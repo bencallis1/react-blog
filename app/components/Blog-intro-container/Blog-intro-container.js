@@ -4,7 +4,7 @@ import Profile from '../Profile/Profile';
 import {getUserInfo,getPosts} from '../../utils/helpers'
 require('./Home.css');
 
-class Home extends React.Component {
+class BlogIntroContainer extends React.Component {
     constructor(props){
         super(props);
 
@@ -32,7 +32,7 @@ class Home extends React.Component {
             this.setState({
                 cardData: data.data
             })
-            }.bind(this));
+        }.bind(this));
 
         // Here we are getting al the userInfo from the api/userInfo route
         getUserInfo().then(function(data){
@@ -55,4 +55,4 @@ class Home extends React.Component {
 }
 
 
-export default Home
+export default BlogIntroContainer

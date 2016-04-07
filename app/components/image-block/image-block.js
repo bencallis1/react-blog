@@ -1,7 +1,9 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
 require('./image-block.css');
 
+
 const PhotoGrid = ({cardData}) => {
+
     return (
         <div className="list-container">
             <div className="grid-list">
@@ -9,8 +11,10 @@ const PhotoGrid = ({cardData}) => {
                     return (
                         //The Key here should be a id from our database
                         <div className="list-group-item" key={data.id}>
-                            <img src={data.link} alt={data.name}/>
-                            <div class="desc">
+                            <div className="image-container">
+                                <img src={data.link} alt={data.name}/>
+                            </div>
+                            <div className="desc">
                                 <p>{data.desc}</p>
                             </div>
                         </div>
@@ -21,9 +25,10 @@ const PhotoGrid = ({cardData}) => {
     );
 };
 
+
 PhotoGrid.propTypes = {
     cardData: React.PropTypes.array.isRequired
-}
+};
 
 
 
