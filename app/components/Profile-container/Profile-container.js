@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import Profile from './Profile/Profile';
-import ImageBlock from 'Image-block/Image-block';
+import PhotoGrid from './Image-block/Image-block';
 import {getUserInfo,getPosts} from '../../utils/helpers'
 require('./Profile-container.css');
 
@@ -16,11 +16,20 @@ class  ProfileContainer extends React.Component {
             intro: ''
         }
     }
+    componentDidMount(){
+        getUserInfo(this.props.params.userid).then(function(data){
+           console.log(data)
+            //this.setState({
+            //    usersBlogData: data.data
+            //})
+        }.bind(this));
+
+    }
 
 
     render(){
         return (
-            <div className="main-home-container">
+            <div className="main-profile-container">
                 <Profile user={this.state.userInfo} />
                 <PhotoGrid cardData={this.state.cardData} />
             </div>

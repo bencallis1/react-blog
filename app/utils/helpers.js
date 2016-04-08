@@ -11,8 +11,8 @@ export let getPosts = function (){
 
 };
 
-export let getUserInfo = function () {
-    return axios.get(`http://localhost:8080/api/userInfo`)
+export let getUserInfo = function (id) {
+    return axios.get(`http://localhost:8080/api/userInfo/${id}`)
         .then(function (data) {
             return data;
         })

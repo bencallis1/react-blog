@@ -27,7 +27,6 @@ class BlogIntroContainer extends React.Component {
     init(){
 
         usersBlogData().then(function(data){
-            console.log(data.data)
             this.setState({
                 usersBlogData: data.data
             })

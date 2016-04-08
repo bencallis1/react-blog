@@ -8,7 +8,6 @@ require('./Blog-meta.css');
 
 
 const BlogMeta = ({metaInfo}) => {
-    console.log(metaInfo);
     let textColor = metaInfo.textColor;
     let style = textColor !== null ? {color: textColor} : "";
     return (
