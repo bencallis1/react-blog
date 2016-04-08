@@ -13,15 +13,20 @@ class  ProfileContainer extends React.Component {
         this.state = {
             cardData: [],
             userInfo: {},
-            intro: ''
+
         }
     }
     componentDidMount(){
         getUserInfo(this.props.params.userid).then(function(data){
-           console.log(data)
-            //this.setState({
-            //    usersBlogData: data.data
-            //})
+            this.setState({
+                userInfo: data.data
+            })
+        }.bind(this));
+
+        getPosts().then(function(data){
+            this.setState({
+                cardData: data.data
+            })
         }.bind(this));
 
     }
@@ -40,3 +45,4 @@ class  ProfileContainer extends React.Component {
 
 
 export default ProfileContainer
+

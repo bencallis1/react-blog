@@ -1,14 +1,20 @@
 .profile-container {
-    width:475px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background: #E5F3F3;
+    width:400px;
+    height: 100vh;
+    padding-left: 30px;
+    background: url(http://i.imgur.com/miOvvi4.png)left no-repeat;
+    background-size: contain;
     text-align: center;
     padding-top: 20px;
 }
 
-.profile-image {
+.profile-image-container {
+    width: 100%;
+    margin: 30px auto;
+
+}
+
+.profile-image-container img{
     width:100%;
 }
 
@@ -21,4 +27,23 @@
     margin-right: auto;
     font-family: 'Playfair Display', serif;
     text-align: left;
+}
+
+.like-count-container {
+    margin-top: 30px;
+}
+
+.like-count-container h1 {
+ display: inline-block;
+    margin: 0;
+}
+
+.heart-icon {
+    display: inline-block;
+    width: 30px;
+    height: 25px;
+    background: url(http://i.imgur.com/E5suinP.png)center no-repeat;
+    background-size: contain;
+    margin-right: 15px;
+    cursor: pointer;
 }
