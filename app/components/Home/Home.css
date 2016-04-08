@@ -1,4 +1,7 @@
 .main-home-container {
     display: flex;
     justify-content: space-between;
+    background: url(http://i.imgur.com/cLpNdgQ.jpg) center no-repeat;
+    background-size: cover;
+    background-attachment:fixed;
 }

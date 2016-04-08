@@ -121,7 +121,6 @@ function findUser(array, value) {
 
 
 app.get('/api/blogData', function(req, res) {
-    console.log('someone hit our route');
     res.send(data);
 });
 
@@ -133,11 +132,8 @@ app.get('/api/userInfo/:id', function(req, res) {
 });
 
 app.get('/api/usersBlogData', function(req, res) {
-    console.log('someone hit the usersBlogData api');
     res.send(usersBlogData);
 });
-
-
 
 
 app.listen(port, function () {

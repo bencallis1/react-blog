@@ -2,7 +2,7 @@
  * Created by Ben on 4/7/16.
  */
 import React from 'react';
-import BlogLink from '../Blog-link/Blog-link';
+import BlogLink from './Blog-link/Blog-link';
 require('./Blog-image.css');
 
 

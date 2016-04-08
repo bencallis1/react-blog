@@ -9,20 +9,20 @@
 
 .list-group-item {
     list-style: none;
-    width: 250px;
+    width: 200px;
     margin: 15px;
     display: inline-block;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
 }
 
-.image-container img {
-    cursor: pointer;
+.blog-image-container img {
     width: 100%;
-    height: 100%;
+
 }
 
 .grid-list {
     text-align: center;
+    padding-top: 32px;
 }
 
 .desc {

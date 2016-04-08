@@ -10,7 +10,7 @@ const PhotoGrid = ({cardData}) => {
                     return (
                         //The Key here should be a id from our database
                         <div className="list-group-item" key={data.id}>
-                            <div className="image-container">
+                            <div className="blog-image-container">
                                 <img src={data.link} alt={data.name}/>
                             </div>
                             <div className="desc">
@@ -32,3 +32,4 @@ PhotoGrid.propTypes = {
 
 
 export default PhotoGrid
+
