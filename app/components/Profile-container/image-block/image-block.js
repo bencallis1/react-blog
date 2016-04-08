@@ -3,7 +3,6 @@ require('./Image-block.css');
 
 
 const PhotoGrid = ({cardData}) => {
-
     return (
         <div className="list-container">
             <div className="grid-list">
