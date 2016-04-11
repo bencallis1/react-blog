@@ -180,7 +180,13 @@ ReactDOM.render(
 
 * Run webpack -w first, second run nodemon server.js and final run http-server
 
-## Step 2) Creating Components
+
+
+## Step 2) Blog-feed
+
+### Blog-Feed
+
+<img src="http://i.imgur.com/oMwsnug.jpg" width="100%" height="100%"></img>
 
 
 ### Home Component
@@ -657,6 +663,441 @@ We can do this by using the javascript map method.
 
 
 ```
+
+
+
+
+
+
+## Step 3) Blog-Profile
+
+
+### Blog-Profile
+
+<img src="http://i.imgur.com/KV9PVdC.jpg" width="100%" height="100%"></img>
+
+
+### Creating the ProfileContainer Component
+
+####
+
+* Inside teh profile-container.js file import REACT, Profile from './Profile/Profile', PhotoGrid from './Image-block/Image-block', {getUserInfo,getPosts} from '../../utils/helpers' and require the css file
+* Using the ES6/es2015  class syntax create the ProfileContainer component. Is looks like this:  class ProfileContainer extends React.Component { }
+* Make sure to export default ProfileContainer under your React.Component. This will make our component available to import in other modules.
+* Inside the ProfileContainer React.Component at the top add a constructor method that takes props as a parameter
+
+
+####
+
+
+
+### Setting up the state ProfileContainer Component
+
+####
+
+* Directly under the constructor method add a super method that takes props as a parameter. We are passing props into super so we can have access to props inside our constructor using the this keyword
+* Now we need to set up the default state of our component this is usually done with empty data. Under the super(props) set the state by creating a object on this.state.
+* Inside the this.state object add a property called  cardData with the value as a empty array. Add another property called userInfo with the value being a empty object.
+
+
+####
+
+
+```
+
+import React from 'react';
+import Profile from './Profile/Profile';
+import PhotoGrid from './Image-block/Image-block';
+import {getUserInfo,getPosts} from '../../utils/helpers'
+require('./Profile-container.css');
+
+class  ProfileContainer extends React.Component {
+    constructor(add props){
+        super(add props);
+        this.state = {
+           set your state
+
+        }
+    }
+
+
+
+
+}
+
+
+export default ProfileContainer
+
+
+
+```
+
+
+####
+
+
+```
+
+import React from 'react';
+import Profile from './Profile/Profile';
+import PhotoGrid from './Image-block/Image-block';
+import {getUserInfo,getPosts} from '../../utils/helpers'
+require('./Profile-container.css');
+
+class  ProfileContainer extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            cardData: [],
+            userInfo: {},
+
+        }
+    }
+
+
+}
+
+
+export default ProfileContainer
+
+
+
+```
+
+
+### Life Cycle  ProfileContainer Component
+
+####
+
+* This information will be covered on day 2 so for now just copy and paste the code below under your constructor function
+
+
+```
+    componentDidMount(){
+           getUserInfo(this.props.params.userid).then(function(data){
+               this.setState({
+                   userInfo: data.data
+               })
+           }.bind(this));
+
+           getPosts().then(function(data){
+               this.setState({
+                   cardData: data.data
+               })
+           }.bind(this));
+
+       }
+
+
+```
+
+
+### Render Method ProfileContainer Component
+
+####
+
+
+* Create a render method that returns a div.
+* Inside the newly created div add the Profile component and add a attribute called user with the value being {this.state.userInfo}
+* Inside the newly created div add the PhotoGrid component and add a attribute called cardData with the value being {this.state.cardData}
+
+
+
+
+```
+
+render(){
+        return (
+            <div>
+               Add components here
+            </div>
+        )
+    }
+
+
+```
+
+####
+
+```
+render(){
+        return (
+            <div className="main-profile-container">
+                <Profile user={this.state.userInfo} />
+                <PhotoGrid cardData={this.state.cardData} />
+            </div>
+        )
+    }
+
+```
+
+
+
+
+
+
+
+### Creating the Profile Component
+
+####
+
+
+* Inside the profile.js file import REACT and require the css file
+* This component is going to be a dumb component it isn't as complicated as the ProfileContainer component because it's only receiving data and displaying it
+* Using the ES6/es2015 syntax create a function called Profile that takes {user} as a parameter and returns a div
+* By default Export the component
+* Add a propType object on the Profile component that has a property user with the value set to  React.PropTypes.object.isRequired
+
+
+
+
+####
+
+
+### Displaying Data Profile Component
+
+* Now that we have the skeleton of the component created we can display the data
+* Inside the return statement you can start to display your data by acessing the properties on the user object
+
+```
+
+import React from 'react';
+require('./Profile.css');
+
+
+const Profile = ({user}) => {
+    return (
+        <div>
+            <div>
+            <img src={user.image} alt={user.username}/>
+            </div>
+            <div>
+                <h1> username property </h1>
+                <p> intro property </p>
+                <div>
+                    <h1> likeCount property </h1>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+
+Profile.propTypes = {
+    user: React.PropTypes.object.isRequired
+};
+
+
+
+export default Profile
+
+
+```
+
+
+####
+
+
+
+```
+
+import React from 'react';
+require('./Profile.css');
+
+
+const Profile = ({user}) => {
+    return (
+        <div>
+            <div>
+            <img src={user.image} alt={user.username}/>
+            </div>
+            <div>
+                <h1>{user.username}</h1>
+                <p>{user.intro}</p>
+                <div>
+                    <h1>{user.likeCount}</h1>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+
+Profile.propTypes = {
+    user: React.PropTypes.object.isRequired
+};
+
+
+
+export default Profile
+
+
+
+```
+
+
+### Creating the PhotoGrid Component
+
+####
+
+
+* Inside the image-block.js file import REACT and require the css file
+* This component is going to be a dumb component it isn't as complicated as the ProfileContainer component because it's only receiving data and displaying it
+* Using the ES6/es2015 syntax create a function called PhotoGrid that takes {cardData} as a parameter and returns a div
+* By default Export the component
+* Add a propType object on the PhotoGrid component that has a property cardData with the value set to  React.PropTypes.array.isRequired
+
+
+
+####
+
+
+### Displaying Data PhotoGrid Component
+
+* Now that we have the skeleton of the component created we can display the data
+* Inside the return statement you can start to display your data by accessing the properties on the {cardData} object
+* You will need to use the javascript map method because we want to iterate over every item in the cardData array
+
+
+<img src="http://i.imgur.com/wIfY6J8.jpg" width="100%" height="100%"></img>
+
+
+
+```
+
+import React from 'react';
+require('./Image-block.css');
+
+
+const PhotoGrid = ({cardData}) => {
+    return (
+        <div>
+            <div>
+                {cardData.map((data) => {
+                    return (
+
+                       Here you can add your container div with the image tag
+                    )
+                })}
+            </div>
+        </div>
+    );
+};
+
+
+PhotoGrid.propTypes = {
+    cardData: React.PropTypes.array.isRequired
+};
+
+
+
+export default PhotoGrid
+
+
+
+
+```
+
+
+####
+
+
+
+```
+
+import React from 'react';
+require('./Image-block.css');
+
+
+const PhotoGrid = ({cardData}) => {
+    return (
+        <div className="list-container">
+            <div className="grid-list">
+                {cardData.map((data) => {
+                    return (
+                        //The Key here should be a id from our database
+                        <div className="list-group-item" key={data.id}>
+                            <div className="blog-image-container">
+                                <img src={data.link} alt={data.name}/>
+                            </div>
+                            <div className="desc">
+                                <p>{data.desc}</p>
+                            </div>
+                        </div>
+                    )
+                })}
+            </div>
+        </div>
+    );
+};
+
+
+PhotoGrid.propTypes = {
+    cardData: React.PropTypes.array.isRequired
+};
+
+
+
+export default PhotoGrid
+
+
+
+```
+
+
+
+
+
+## Step 4) Axios
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
