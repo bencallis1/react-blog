@@ -5,8 +5,13 @@
 * We will be building a REACT blog feed page and a profile page
 * The following images are of the finished design. The black diamond for this project will be to match the designs.
 
+### Blog-Feed
+
 <img src="http://i.imgur.com/oMwsnug.jpg" width="100%" height="100%"></img>
 
+
+
+### Blog-Profile
 
 <img src="http://i.imgur.com/KV9PVdC.jpg" width="100%" height="100%"></img>
 
@@ -175,7 +180,13 @@ ReactDOM.render(
 
 * Run webpack -w first, second run nodemon server.js and final run http-server
 
-## Step 2) Creating Components
+
+
+## Step 2) Blog-feed
+
+### Blog-Feed
+
+<img src="http://i.imgur.com/oMwsnug.jpg" width="100%" height="100%"></img>
 
 
 ### Home Component
@@ -419,7 +430,7 @@ We can do this by using the javascript map method.
 * Inside the newly created div create a map method that iterates over the userBlogData, add data parameter to the map method. This map method is going to return the BlogImage and BlogMeta components
 
 
-``` map example
+```
 
   render(){
         return (
@@ -652,3 +663,731 @@ We can do this by using the javascript map method.
 
 
 ```
+
+
+
+
+
+
+## Step 3) Blog-Profile
+
+
+### Blog-Profile
+
+<img src="http://i.imgur.com/KV9PVdC.jpg" width="100%" height="100%"></img>
+
+
+### Creating the ProfileContainer Component
+
+####
+
+* Inside teh profile-container.js file import REACT, Profile from './Profile/Profile', PhotoGrid from './Image-block/Image-block', {getUserInfo,getPosts} from '../../utils/helpers' and require the css file
+* Using the ES6/es2015  class syntax create the ProfileContainer component. Is looks like this:  class ProfileContainer extends React.Component { }
+* Make sure to export default ProfileContainer under your React.Component. This will make our component available to import in other modules.
+* Inside the ProfileContainer React.Component at the top add a constructor method that takes props as a parameter
+
+
+####
+
+
+
+### Setting up the state ProfileContainer Component
+
+####
+
+* Directly under the constructor method add a super method that takes props as a parameter. We are passing props into super so we can have access to props inside our constructor using the this keyword
+* Now we need to set up the default state of our component this is usually done with empty data. Under the super(props) set the state by creating a object on this.state.
+* Inside the this.state object add a property called  cardData with the value as a empty array. Add another property called userInfo with the value being a empty object.
+
+
+####
+
+
+```
+
+import React from 'react';
+import Profile from './Profile/Profile';
+import PhotoGrid from './Image-block/Image-block';
+import {getUserInfo,getPosts} from '../../utils/helpers'
+require('./Profile-container.css');
+
+class  ProfileContainer extends React.Component {
+    constructor(add props){
+        super(add props);
+        this.state = {
+           set your state
+
+        }
+    }
+
+
+
+
+}
+
+
+export default ProfileContainer
+
+
+
+```
+
+
+####
+
+
+```
+
+import React from 'react';
+import Profile from './Profile/Profile';
+import PhotoGrid from './Image-block/Image-block';
+import {getUserInfo,getPosts} from '../../utils/helpers'
+require('./Profile-container.css');
+
+class  ProfileContainer extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            cardData: [],
+            userInfo: {},
+
+        }
+    }
+
+
+}
+
+
+export default ProfileContainer
+
+
+
+```
+
+
+### Life Cycle  ProfileContainer Component
+
+####
+
+* This information will be covered on day 2 so for now just copy and paste the code below under your constructor function
+
+
+```
+    componentDidMount(){
+           getUserInfo(this.props.params.userid).then(function(data){
+               this.setState({
+                   userInfo: data.data
+               })
+           }.bind(this));
+
+           getPosts().then(function(data){
+               this.setState({
+                   cardData: data.data
+               })
+           }.bind(this));
+
+       }
+
+
+```
+
+
+### Render Method ProfileContainer Component
+
+####
+
+
+* Create a render method that returns a div.
+* Inside the newly created div add the Profile component and add a attribute called user with the value being {this.state.userInfo}
+* Inside the newly created div add the PhotoGrid component and add a attribute called cardData with the value being {this.state.cardData}
+
+
+
+
+```
+
+render(){
+        return (
+            <div>
+               Add components here
+            </div>
+        )
+    }
+
+
+```
+
+####
+
+```
+render(){
+        return (
+            <div className="main-profile-container">
+                <Profile user={this.state.userInfo} />
+                <PhotoGrid cardData={this.state.cardData} />
+            </div>
+        )
+    }
+
+```
+
+
+
+
+
+
+
+### Creating the Profile Component
+
+####
+
+
+* Inside the profile.js file import REACT and require the css file
+* This component is going to be a dumb component it isn't as complicated as the ProfileContainer component because it's only receiving data and displaying it
+* Using the ES6/es2015 syntax create a function called Profile that takes {user} as a parameter and returns a div
+* By default Export the component
+* Add a propType object on the Profile component that has a property user with the value set to  React.PropTypes.object.isRequired
+
+
+
+
+####
+
+
+### Displaying Data Profile Component
+
+* Now that we have the skeleton of the component created we can display the data
+* Inside the return statement you can start to display your data by acessing the properties on the user object
+
+```
+
+import React from 'react';
+require('./Profile.css');
+
+
+const Profile = ({user}) => {
+    return (
+        <div>
+            <div>
+            <img src={user.image} alt={user.username}/>
+            </div>
+            <div>
+                <h1> username property </h1>
+                <p> intro property </p>
+                <div>
+                    <h1> likeCount property </h1>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+
+Profile.propTypes = {
+    user: React.PropTypes.object.isRequired
+};
+
+
+
+export default Profile
+
+
+```
+
+
+####
+
+
+
+```
+
+import React from 'react';
+require('./Profile.css');
+
+
+const Profile = ({user}) => {
+    return (
+        <div>
+            <div>
+            <img src={user.image} alt={user.username}/>
+            </div>
+            <div>
+                <h1>{user.username}</h1>
+                <p>{user.intro}</p>
+                <div>
+                    <h1>{user.likeCount}</h1>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+
+Profile.propTypes = {
+    user: React.PropTypes.object.isRequired
+};
+
+
+
+export default Profile
+
+
+
+```
+
+
+### Creating the PhotoGrid Component
+
+####
+
+
+* Inside the image-block.js file import REACT and require the css file
+* This component is going to be a dumb component it isn't as complicated as the ProfileContainer component because it's only receiving data and displaying it
+* Using the ES6/es2015 syntax create a function called PhotoGrid that takes {cardData} as a parameter and returns a div
+* By default Export the component
+* Add a propType object on the PhotoGrid component that has a property cardData with the value set to  React.PropTypes.array.isRequired
+
+
+
+####
+
+
+### Displaying Data PhotoGrid Component
+
+* Now that we have the skeleton of the component created we can display the data
+* Inside the return statement you can start to display your data by accessing the properties on the {cardData} object
+* You will need to use the javascript map method because we want to iterate over every item in the cardData array
+
+
+<img src="http://i.imgur.com/wIfY6J8.jpg" width="100%" height="100%"></img>
+
+
+
+```
+
+import React from 'react';
+require('./Image-block.css');
+
+
+const PhotoGrid = ({cardData}) => {
+    return (
+        <div>
+            <div>
+                {cardData.map((data) => {
+                    return (
+
+                       Here you can add your container div with the image tag
+                    )
+                })}
+            </div>
+        </div>
+    );
+};
+
+
+PhotoGrid.propTypes = {
+    cardData: React.PropTypes.array.isRequired
+};
+
+
+
+export default PhotoGrid
+
+
+
+
+```
+
+
+####
+
+
+
+```
+
+import React from 'react';
+require('./Image-block.css');
+
+
+const PhotoGrid = ({cardData}) => {
+    return (
+        <div className="list-container">
+            <div className="grid-list">
+                {cardData.map((data) => {
+                    return (
+                        //The Key here should be a id from our database
+                        <div className="list-group-item" key={data.id}>
+                            <div className="blog-image-container">
+                                <img src={data.link} alt={data.name}/>
+                            </div>
+                            <div className="desc">
+                                <p>{data.desc}</p>
+                            </div>
+                        </div>
+                    )
+                })}
+            </div>
+        </div>
+    );
+};
+
+
+PhotoGrid.propTypes = {
+    cardData: React.PropTypes.array.isRequired
+};
+
+
+
+export default PhotoGrid
+
+
+
+```
+
+
+
+
+
+## Step 4) Axios
+
+### Helpers
+
+* We are going to write a couple helper functions that we are going to use to get our data from our api
+* Open helpers.js located in the utils folder
+* import axios from 'axios'
+* We need 3 functions getPosts, getUserInfo, userBlogData to get our application to work.
+
+
+### getPosts
+
+* create a function called getPosts that returns axios.get `http://localhost:8080/api/blogData`
+* Make sure you export this function or you will not be able to import it into another file
+
+
+```
+
+export let getPosts = function (){
+ return axios.get(`http://localhost:8080/api/blogData`)
+     .then(callback function {
+       return data;
+     })
+     .catch(callback function{
+         return data
+     });
+
+};
+
+
+```
+ ####
+
+ ```
+
+
+export let getPosts = function (){
+ return axios.get(`http://localhost:8080/api/blogData`)
+     .then(function (data) {
+       return data;
+     })
+     .catch(function (data) {
+         return data
+     });
+
+};
+
+
+ ```
+
+
+
+### getUserInfo
+
+* create a function called getUserInfo that returns axios.get `http://localhost:8080/api/userInfo/${id}`
+* Make sure you export this function or you will not be able to import it into another file
+
+
+```
+
+
+export let getUserInfo = function (id) {
+    return axios.get(`http://localhost:8080/api/userInfo/${id}`)
+        .then(callback function {
+            return data;
+        })
+        .catch(callback function {
+            return data
+        });
+
+};
+
+```
+
+
+ ####
+
+ ```
+
+
+
+export let getUserInfo = function (id) {
+    return axios.get(`http://localhost:8080/api/userInfo/${id}`)
+        .then(function (data) {
+            return data;
+        })
+        .catch(function (data) {
+            return data
+        });
+
+};
+
+
+ ```
+
+
+
+### usersBlogData
+
+* create a function called usersBlogData that returns axios.get `http://localhost:8080/api/usersBlogData`
+* Make sure you export this function or you will not be able to import it into another file
+
+
+```
+
+
+export let usersBlogData = function () {
+    return axios.get(`http://localhost:8080/api/usersBlogData`)
+        .then(callback function {
+            return data;
+        })
+        .catch(callback function {
+            return data
+        });
+
+};
+
+```
+
+
+ ####
+
+ ```
+
+
+
+export let usersBlogData = function () {
+    return axios.get(`http://localhost:8080/api/usersBlogData`)
+        .then(function (data) {
+            return data;
+        })
+        .catch(function (data) {
+           return data
+        });
+
+};
+
+
+ ```
+
+
+
+## step 5) Importing Helper Functions
+
+### Import Helpers in BlogIntroContainer
+
+* inside the blog-intro-container component import the usersBlogData helper
+
+### Import Helpers in ProfileContainer
+
+* inside the Profile-container component import {getUserInfo,getPosts} helpers
+
+
+
+
+
+## step 6) Life Cycle
+
+### componentDidMount BlogIntroContainer
+
+* We need to make a api request to get the userBlogData but we dont want to do this until the component has mounted.
+* Write a componentDidMount method that will invoke this.init
+* Write a init method, inside this init method invoke the usersBlogData
+* After the usersBlogData has been invoked use the .then syntax to resolve the promise. Inside the promise callback set the state using this.setState
+* this.setState needs to have a usersBlogData property with the value equal to the data from the promise
+* After the promise be sure to bind(this)
+
+####
+
+```
+
+ componentDidMount(){
+        invoke init
+    }
+
+
+    init(){
+       invoke the usersBlogData function and use the .then syntax to resolve the promise. Inside the promise callback set the state using this.setState
+    }be sure to bind(this)
+
+
+```
+
+####
+
+
+
+```
+
+   componentDidMount(){
+         this.init()
+     }
+
+
+     init(){
+         usersBlogData().then(function(data){
+             this.setState({
+                 usersBlogData: data.data
+             })
+         }.bind(this));
+     }
+
+```
+
+
+
+### componentDidMount ProfileContainer
+
+* We need to make two api requests but we don't want to do this until the component has mounted.
+* Write a componentDidMount method that will invoke the getUserInfo and getPosts helper functions
+
+
+### getUserInfo
+
+* The getUserInfo function needs to get the user id from the url params.
+* After the getUserInfo function has been invoked  .then syntax to resolve the promise. Inside the promise callback set the state using this.setState
+* Inside this.setState add a property called userInfo with the value being the data from the promise callback
+
+
+####
+
+```
+
+    componentDidMount(){
+        getUserInfo(get id from url params).then(callback function with data{
+            this.setState({
+                set the state here
+            })
+        }.bind(this));
+
+    }
+
+
+
+```
+
+####
+
+
+```
+
+    componentDidMount(){
+        getUserInfo(this.props.params.userid).then(function(data){
+            this.setState({
+                userInfo: data.data
+            })
+        }.bind(this));
+
+
+    }
+
+
+
+```
+
+### getPosts
+
+* After the getPosts function has been invoked  .then syntax to resolve the promise. Inside the promise callback set the state using this.setState
+* Inside this.setState add a property called cardData with the value being the data from the promise callback
+
+
+####
+
+```
+
+    componentDidMount(){
+           getUserInfo(this.props.params.userid).then(function(data){
+               this.setState({
+                   userInfo: data.data
+               })
+           }.bind(this));
+
+           getPosts().then(callback function {
+               this.setState({
+                  set state
+               })
+           }.bind(this));
+
+       }
+
+```
+
+####
+
+
+```
+
+
+    componentDidMount(){
+           getUserInfo(this.props.params.userid).then(function(data){
+               this.setState({
+                   userInfo: data.data
+               })
+           }.bind(this));
+
+           getPosts().then(function(data){
+               this.setState({
+                   cardData: data.data
+               })
+           }.bind(this));
+
+       }
+
+
+
+```
+
+
+## Step 7)  Routing
+
+
+* Routing in React is a really vast topic, and there are a _lot_ of different ways to go about it.
+* For this project, we'll use `react-router`.
+* Inside of `app/config/routes.js` we'll set up very basic routing, so that our `Home` component loads and so you can navigate to the profile page
+* You'll want to import React and your Home and ProfileContainer  components, and then a few things from `react-router`.
+* import { Router, Route, IndexRoute,hashHistory } from 'react-router'
+
+* Below is an example of what your routes.js should look like
+
+
+```
+
+import React from 'react';
+import Home from '../components/Home/Home';
+import  ProfileContainer from '../components/Profile-container/Profile-container';
+import {Router, Route, IndexRoute, hashHistory} from 'react-router';
+
+export default (
+    <Router history={ hashHistory }>
+        <Route path="/" component={Home}>
+            <IndexRoute component={Home}></IndexRoute>
+        </Route>
+        <Route path="/profile/:userid" component={ProfileContainer}></Route>
+    </Router>
+
+);
+
+
+```
+
+
+
+
