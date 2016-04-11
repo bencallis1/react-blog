@@ -5,8 +5,13 @@
 * We will be building a REACT blog feed page and a profile page
 * The following images are of the finished design. The black diamond for this project will be to match the designs.
 
+### Blog-Feed
+
 <img src="http://i.imgur.com/oMwsnug.jpg" width="100%" height="100%"></img>
 
+
+
+### Blog-Profile
 
 <img src="http://i.imgur.com/KV9PVdC.jpg" width="100%" height="100%"></img>
 
@@ -419,7 +424,7 @@ We can do this by using the javascript map method.
 * Inside the newly created div create a map method that iterates over the userBlogData, add data parameter to the map method. This map method is going to return the BlogImage and BlogMeta components
 
 
-``` map example
+```
 
   render(){
         return (
