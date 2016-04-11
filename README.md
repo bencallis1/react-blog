@@ -19,7 +19,7 @@
 
 --------
 
-## Step 1
+## 1) Setting Up Our Project
 
 ### Setting Up Our Project
 
@@ -182,7 +182,7 @@ ReactDOM.render(
 
 
 
-## Step 2) Blog-feed
+## 1) Blog-feed
 
 ### Blog-Feed
 
@@ -669,7 +669,7 @@ We can do this by using the javascript map method.
 
 
 
-## Step 3) Blog-Profile
+## 1) Blog-Profile
 
 
 ### Blog-Profile
@@ -830,10 +830,6 @@ render(){
     }
 
 ```
-
-
-
-
 
 
 
@@ -1048,107 +1044,350 @@ export default PhotoGrid
 
 
 
-## Step 4) Axios
+## 2) Axios
+
+### Helpers
+
+* We are going to write a couple helper functions that we are going to use to get our data from our api
+* Open helpers.js located in the utils folder
+* import axios from 'axios'
+* We need 3 functions getPosts, getUserInfo, userBlogData to get our application to work.
+
+
+### getPosts
+
+* create a function called getPosts that returns axios.get `http://localhost:8080/api/blogData`
+* Make sure you export this function or you will not be able to import it into another file
+
+
+```
+
+export let getPosts = function (){
+ return axios.get(`http://localhost:8080/api/blogData`)
+     .then(callback function {
+       return data;
+     })
+     .catch(callback function{
+         return data
+     });
+
+};
+
+
+```
+ ####
+
+ ```
+
+
+export let getPosts = function (){
+ return axios.get(`http://localhost:8080/api/blogData`)
+     .then(function (data) {
+       return data;
+     })
+     .catch(function (data) {
+         return data
+     });
+
+};
+
+
+ ```
+
+
+
+### getUserInfo
+
+* create a function called getUserInfo that returns axios.get `http://localhost:8080/api/userInfo/${id}`
+* Make sure you export this function or you will not be able to import it into another file
+
+
+```
+
+
+export let getUserInfo = function (id) {
+    return axios.get(`http://localhost:8080/api/userInfo/${id}`)
+        .then(callback function {
+            return data;
+        })
+        .catch(callback function {
+            return data
+        });
+
+};
+
+```
+
+
+ ####
+
+ ```
+
+
+
+export let getUserInfo = function (id) {
+    return axios.get(`http://localhost:8080/api/userInfo/${id}`)
+        .then(function (data) {
+            return data;
+        })
+        .catch(function (data) {
+            return data
+        });
+
+};
+
+
+ ```
+
+
+
+### usersBlogData
+
+* create a function called usersBlogData that returns axios.get `http://localhost:8080/api/usersBlogData`
+* Make sure you export this function or you will not be able to import it into another file
+
+
+```
+
+
+export let usersBlogData = function () {
+    return axios.get(`http://localhost:8080/api/usersBlogData`)
+        .then(callback function {
+            return data;
+        })
+        .catch(callback function {
+            return data
+        });
+
+};
+
+```
+
+
+ ####
+
+ ```
+
+
+
+export let usersBlogData = function () {
+    return axios.get(`http://localhost:8080/api/usersBlogData`)
+        .then(function (data) {
+            return data;
+        })
+        .catch(function (data) {
+           return data
+        });
+
+};
+
+
+ ```
+
+
+
+## 2) Importing Helper Functions
+
+### Import Helpers in BlogIntroContainer
+
+* inside the blog-intro-container component import the usersBlogData helper
+
+### Import Helpers in ProfileContainer
+
+* inside the Profile-container component import {getUserInfo,getPosts} helpers
 
 
 
 
 
+## 2) Life Cycle
+
+### componentDidMount BlogIntroContainer
+
+* We need to make a api request to get the userBlogData but we dont want to do this until the component has mounted.
+* Write a componentDidMount method that will invoke this.init
+* Write a init method, inside this init method invoke the usersBlogData
+* After the usersBlogData has been invoked use the .then syntax to resolve the promise. Inside the promise callback set the state using this.setState
+* this.setState needs to have a usersBlogData property with the value equal to the data from the promise
+* After the promise be sure to bind(this)
+
+####
+
+```
+
+ componentDidMount(){
+        invoke init
+    }
+
+
+    init(){
+       invoke the usersBlogData function and use the .then syntax to resolve the promise. Inside the promise callback set the state using this.setState
+    }be sure to bind(this)
+
+
+```
+
+####
 
 
 
+```
+
+   componentDidMount(){
+         this.init()
+     }
+
+
+     init(){
+         usersBlogData().then(function(data){
+             this.setState({
+                 usersBlogData: data.data
+             })
+         }.bind(this));
+     }
+
+```
 
 
 
+### componentDidMount ProfileContainer
+
+* We need to make two api requests but we don't want to do this until the component has mounted.
+* Write a componentDidMount method that will invoke the getUserInfo and getPosts helper functions
+
+
+### getUserInfo
+
+* The getUserInfo function needs to get the user id from the url params.
+* After the getUserInfo function has been invoked  .then syntax to resolve the promise. Inside the promise callback set the state using this.setState
+* Inside this.setState add a property called userInfo with the value being the data from the promise callback
+
+
+####
+
+```
+
+    componentDidMount(){
+        getUserInfo(get id from url params).then(callback function with data{
+            this.setState({
+                set the state here
+            })
+        }.bind(this));
+
+    }
 
 
 
+```
+
+####
+
+
+```
+
+    componentDidMount(){
+        getUserInfo(this.props.params.userid).then(function(data){
+            this.setState({
+                userInfo: data.data
+            })
+        }.bind(this));
+
+
+    }
 
 
 
+```
+
+### getPosts
+
+* After the getPosts function has been invoked  .then syntax to resolve the promise. Inside the promise callback set the state using this.setState
+* Inside this.setState add a property called cardData with the value being the data from the promise callback
+
+
+####
+
+```
+
+    componentDidMount(){
+           getUserInfo(this.props.params.userid).then(function(data){
+               this.setState({
+                   userInfo: data.data
+               })
+           }.bind(this));
+
+           getPosts().then(callback function {
+               this.setState({
+                  set state
+               })
+           }.bind(this));
+
+       }
+
+```
+
+####
+
+
+```
+
+
+    componentDidMount(){
+           getUserInfo(this.props.params.userid).then(function(data){
+               this.setState({
+                   userInfo: data.data
+               })
+           }.bind(this));
+
+           getPosts().then(function(data){
+               this.setState({
+                   cardData: data.data
+               })
+           }.bind(this));
+
+       }
 
 
 
+```
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### Routing
+## 2)  Routing
 
 
 * Routing in React is a really vast topic, and there are a _lot_ of different ways to go about it.
 * For this project, we'll use `react-router`.
-* Inside of `app/config/routes.js` we'll set up very basic routing, so that our `Home` component loads.
-* You'll want to import React and your `Home` component, and then a few things from `react-router`.
-* `import { Router, Route, IndexRoute,hashHistory } from 'react-router'`
+* Inside of `app/config/routes.js` we'll set up very basic routing, so that our `Home` component loads and so you can navigate to the profile page
+* You'll want to import React and your Home and ProfileContainer  components, and then a few things from `react-router`.
+* import { Router, Route, IndexRoute,hashHistory } from 'react-router'
 
 * Below is an example of what your routes.js should look like
 
-```javascript
+
+```
 
 import React from 'react';
 import Home from '../components/Home/Home';
 import  ProfileContainer from '../components/Profile-container/Profile-container';
-
 import {Router, Route, IndexRoute, hashHistory} from 'react-router';
 
 export default (
     <Router history={ hashHistory }>
-          <Route path="/" component={Home}>
-              <IndexRoute component={Home}></IndexRoute>
-          </Route>
-          <Route path="/profile/:userid" component={ProfileContainer}></Route>
+        <Route path="/" component={Home}>
+            <IndexRoute component={Home}></IndexRoute>
+        </Route>
+        <Route path="/profile/:userid" component={ProfileContainer}></Route>
     </Router>
 
 );
+
+
 ```
 
 
-### Lifecycle Hooks
 
---------
+## 2)  Redux
 
-## Day Three
 
-### Redux
 
-### Axios
+
