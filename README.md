@@ -1,4 +1,22 @@
-# React Blog
+## React Blog Overview
+
+### What are we building
+
+* We will be building a REACT blog feed page and a profile page
+* The following images are of the finished design. The black diamond for this project will be to match the designs.
+
+<img src="http://i.imgur.com/oMwsnug.jpg" width="100%" height="100%"></img>
+
+
+<img src="http://i.imgur.com/KV9PVdC.jpg" width="100%" height="100%"></img>
+
+####
+
+--------
+
+## Step 1
+
+### Setting Up Our Project
 
 * You may want to take a moment to get your editor comfortable with JSX.
   * For Atom, `apm install react language-babel`.
@@ -17,11 +35,6 @@
   * [SurviveJS](https://survivejs.com/), a very in-depth beginner's guide to React
   * [React Tidbits](https://github.com/zacanger/react-tidbits): demos, boilerplates, and more links.
 
---------
-
-## Day One
-
-### Setting Up Our Project
 
 Go ahead and check out your directory structure now. It should look something like this:
 Folder structure as we know by now is really important. This is especially the case with REACT.
@@ -69,7 +82,9 @@ package.json
 README.md
 server.js
 webpack.config.js
+
 ```
+
 We're breaking out all our source into subdirectories by _component_. This is a common pattern in modern front-end
 JS, and one that keep organization very logical and convenient as an app grows.
 
@@ -92,36 +107,19 @@ We'll be building two types of components.
 We're using this convention because it makes our app easier to reason about, makes UI components
 more reusable, and keeps most of our logic in the Smart components.
 
-### State and Props
+### Npm Install
+* Run npm install to get all the dependencies we need
+
 
 ### Webpack
 
 Webpack is a build tool primarily intended for front-end code.
 There are other systems you can use to work with React, but it's worth taking the time to learn Webpack.
 
-* For any project you'll need to `npm i -D webpack`. It's also worth installing `webpack-dev-server`.
-* Both of those packages are useful to have globally as well, so `npm i -g webpack webpack-dev-server`.
-* Webpack needs some loaders (like plugins). `npm i -D url-loader style-loader react-hot-loader file-loader css-loader babel-loader`.
-* And we'll need some Babel extras so we can actually transpile our JSX/ES6 to code browsers understand.
-  * `npm i -D babel-core babel-preset-es2017 babel-preset-react`.
-* We may as well `npm i -D nodemon` to run our server as well, and then for our production dependencies:
-* For our production dependencies:
-  * `npm i -S axios react react-dom react-router body-parser cors express express-session cookie-parser lodash`
-
-If you'd like to just get all of that out of the way at once:
-`npm i -D webpack webpack-dev-server babel-core babel-preset-es2017 babel-preset react url-loader style-loader react-hot-loader file-loader css-loader babel-loader nodemon && npm i -S axios react react-dom react-router body-parser cors express express-session cookie-parser lodash && npm i -g webpack webpack-dev-server`
-
-(Take a break, go get some coffee, this might take a minute or two.)
-
---------
-
-Great! We have all the stuff we need to start writing an app in React.
-Well, almost. Webpack takes some configuration. Unlike Gulp and Grunt, Webpack is highly specialised,
-and uses a config file instead of a series of tasks to run.
-
-* You'll want to `touch webpack.config.js` in your project root. The format looks something like this:
+* The webpack.config.js file is already completed and looks like this
 
 ```javascript
+
 module.exports = {
   entry   : {entry point or array of entry points}
 , devtool : {options for devtool}
@@ -141,35 +139,7 @@ module.exports = {
 }
 ```
 
-For the moment we'll just need to set a few options.
-
-```javascript
-
-module.exports = {
-  entry: "./app/App.js",
-  output: {
-    filename: "public/bundle.js"
-  },
-
-  module: {
-    loaders: [
-      {
-        test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel',
-        query: {
-          presets: ['react', 'es2015']
-        }
-      },
-      {test: /\.css$/, loader: 'style!css', exclude: /node_modules/},
-      {test: /\.png$/, loader: 'url', exclude: /node_modules/}
-    ]
-  }
-};
-```
-
 Now, you should be able to run `webpack` without anything breaking!
-Let's add a little bit to our `webpack.config.js` so we can use its magic.
 
 
 ### App (Entry Point)
@@ -193,6 +163,508 @@ ReactDOM.render(
 
 * Note that we're targeting the element with an ID of `app`.
 * Our entire React app will live inside that `div` in our `index.html`.
+
+
+
+### Running the project
+
+* As you are building the application you will need to be running webpack, http-server and nodemon
+* Webpack is used to bundle your javascript
+* nodemon is to run the server
+* http-server is used so we can make api calls to our server and run the app on localhost
+
+* Run webpack -w first, second run nodemon server.js and final run http-server
+
+## Step 2) Creating Components
+
+
+### Home Component
+
+####
+
+Our home component is the container component that holds our Blog-intro-container so let's se that up first.
+
+* In the Home.js file import import React, and require('./Home.css') at the top of the file.
+* We also should import the Blog-intro-container even though we havent set it up yet, so import BlogIntro from '../Blog-intro-container/Blog-intro-container';
+* Using the ES6/es2015  class syntax create the Home component. Is looks like this:  class Home extends React.Component { }
+* Make sure export default Home under your React.Component
+* This component is going to be really simple, all we need to do is invoke the render method  render() and inside the render method return a div with className main-home-container. Inside the main-home-container include the
+ <BlogIntro /> intro component
+
+####
+
+```javascript
+
+
+import React from 'react';
+import BlogIntro from '../Blog-intro-container/Blog-intro-container';
+require('./Home.css');
+
+class Home extends React.Component {
+
+ Write your render method that returns the BlogIntro component
+
+}
+
+
+export default Home
+
+
+
+```
+
+####
+
+```javascript
+
+
+import React from 'react';
+import BlogIntro from '../Blog-intro-container/Blog-intro-container';
+require('./Home.css');
+
+class Home extends React.Component {
+
+    render(){
+        return (
+            <div className="main-home-container">
+               <BlogIntro />
+            </div>
+        )
+    }
+
+}
+
+
+export default Home
+
+
+
+```
+
+
+### Importing dependencies: Blog-intro-container Component
+
+####
+
+Our BlogIntroContainer component is the container component that holds our Blog-image component and our Blog-meta component so there is a lot going lets get to it!
+
+* In the Blog-intro-container.js file import import React, and require('./Blog-intro-container.css') at the top of the file.
+* Because this component is going to be doing a lot of the heavy lift we need to import a few more things
+* Import usersBlogData from utils/helpers
+* Now that we have our helper functions let import the components we need
+* Import BlogImage from './Blog-image/Blog-image';
+* Import BlogMeta from './Blog-meta/Blog-meta';
+* Now that we have all our components and helpers we need lets create the BlogIntroContainer
+
+####
+
+```javascript
+
+
+import React from 'react';
+import {usersBlogData} from '../../utils/helpers'
+import BlogImage from './Blog-image/Blog-image';
+import BlogMeta from './Blog-meta/Blog-meta';
+
+require('./Blog-intro-container.css');
+
+
+
+```
+
+### Creating the  BlogIntroContainer Component
+
+####
+
+* Using the ES6/es2015  class syntax create the BlogIntroContainer component. Is looks like this:  class BlogIntroContainer extends React.Component { }
+* Make sure to export default BlogIntroContainer under your React.Component. This will make our component available to import in other modules "exactly like we are doing in the Home component"
+* Inside the BlogIntroContainer React.Component at the top add a constructor method that takes props as a parameter
+
+####
+
+```
+import React from 'react';
+import {usersBlogData} from '../../utils/helpers'
+import BlogImage from './Blog-image/Blog-image';
+import BlogMeta from './Blog-meta/Blog-meta';
+
+require('./Blog-intro-container.css');
+
+class BlogIntroContainer extends React.Component {
+    constructor method goes here
+
+ }
+
+
+export default BlogIntroContainer
+
+```
+
+####
+
+```
+
+import React from 'react';
+import {usersBlogData} from '../../utils/helpers'
+import BlogImage from './Blog-image/Blog-image';
+import BlogMeta from './Blog-meta/Blog-meta';
+
+require('./Blog-intro-container.css');
+
+class BlogIntroContainer extends React.Component {
+     constructor(props){}
+
+ }
+
+
+export default BlogIntroContainer
+
+```
+
+### Setting up the state BlogIntroContainer Component
+
+####
+
+* Directly under the constructor method add a super method that takes props as a parameter. We are passing props into super so we can have access to props inside our constructor using the this keyword
+* Now we need to set up the default state of our component this is usually done with empty data. Under the super(props) set the state by creating a object on this.state.
+* Inside the this.state object add a property called  usersBlogData with the value as a empty array
+
+
+####
+
+
+```
+
+   import React from 'react';
+   import {usersBlogData} from '../../utils/helpers'
+   import BlogImage from './Blog-image/Blog-image';
+   import BlogMeta from './Blog-meta/Blog-meta';
+
+   require('./Blog-intro-container.css');
+
+   class BlogIntroContainer extends React.Component {
+         constructor(props){
+              super method goes here
+
+              set the default state using this.state
+           }
+
+    }
+
+
+   export default BlogIntroContainer
+
+```
+
+####
+
+
+```
+
+import React from 'react';
+import {usersBlogData} from '../../utils/helpers'
+import BlogImage from './Blog-image/Blog-image';
+import BlogMeta from './Blog-meta/Blog-meta';
+
+require('./Blog-intro-container.css');
+
+class BlogIntroContainer extends React.Component {
+       constructor(props){
+             super(props);
+             this.state = {
+                 usersBlogData: []
+
+             }
+         }
+ }
+
+
+export default BlogIntroContainer
+
+```
+
+### Life Cycle  BlogIntroContainer Component
+
+####
+
+* This information will be covered on day 2 so for now just copy and paste the code below under your constructor function
+
+
+```
+    componentDidMount(){
+    this.init()
+}
+
+    init(){
+        usersBlogData().then(function(data){
+            this.setState({
+                usersBlogData: data.data
+            })
+        }.bind(this));
+    }
+
+
+```
+
+
+### Render Method BlogIntroContainer Component
+
+####
+
+
+* Create a render method that returns a div.
+* As you can see in the image below we need to iterate over our usersBlogData so we can repeat our BlogImage and BlogMeta components for every item found in the  usersBlogData array
+We can do this by using the javascript map method.
+
+* Inside the newly created div create a map method that iterates over the userBlogData, add data parameter to the map method. This map method is going to return the BlogImage and BlogMeta components
+
+
+``` map example
+
+  render(){
+        return (
+            <div>
+                {this.state.usersBlogData.map((data) => {
+                    return (
+                        <div key={data.id}>
+                            <BlogMeta />
+                            <BlogImage />
+                        </div>
+                    )
+                })}
+
+            </div>
+        )
+    }
+
+
+```
+
+<img src="http://i.imgur.com/N4dCaXv.jpg" width="100%" height="100%"></img>
+
+
+
+
+
+
+### Passing data to the BlogMeta and BlogImage components
+
+####
+
+
+* On the BlogMeta component add an attribute called metaInfo that has a value of data
+* On the BlogImage component add an attribute called blogInfo that has a value of data
+
+
+
+
+
+```
+
+  render(){
+        return (
+            <div>
+                {this.state.usersBlogData.map((data) => {
+                    return (
+                        <div key={data.id}>
+                            <BlogMeta metaInfo={data} />
+                            <BlogImage blogInfo={data} />
+                        </div>
+                    )
+                })}
+
+            </div>
+        )
+    }
+
+
+```
+
+
+
+### Creating the BlogImage Component
+
+####
+
+* Inside the Blog-image.js file import REACT, BlogLink and require the css file
+* This component is going to be a dumb component it isn't as complicated as the BlogIntroContainer component because it's only receiving data and displaying it
+* Using the ES6/es2015 syntax create a function called BlogImage that takes {blogInfo} as a parameter and returns a div that wraps a image tag and the BlogLink component
+* By default Export the component
+* Add a propType object on the BlogImage component that has a property blogInfo with the value set to React.PropTypes.object.isRequired
+
+
+
+####
+
+
+
+```
+  import React from 'react';
+  import BlogLink from './Blog-link/Blog-link';
+  require('./Blog-image.css');
+
+
+
+  const function name = (blogInfo object) => {
+      return (
+
+
+      <div>
+          <img/>
+
+            BlogLink component
+      </div>
+      );
+  };
+
+
+
+
+  BlogImage.propTypes = {
+      blogInfo: React.PropTypes.object.isRequired
+  };
+
+
+
+  export default BlogImage
+
+
+```
+
+
+####
+
+
+
+### Passing data to img tag
+
+####
+
+* Set the value of the source attribute on the image element to {blogInfo.image}
+
+
+####
+
+```
+ <img className="blog-intro-img" src={blogInfo.image} alt=""/>
+
+```
+
+
+### Passing data to BlogLink component
+
+####
+
+* On the BlogLink component add a attribute called blogInfo that has a value of {blogInfo}
+
+
+####
+
+
+```
+
+ <BlogLink blogInfo={blogInfo} />
+
+
+```
+
+
+
+
+### Creating the BlogMeta Component
+
+####
+
+* Inside the Blog-meta.js file import REACT and require the css file
+* This component is going to be a dumb component it isn't as complicated as the BlogIntroContainer component because it's only receiving data and displaying it
+* Using the ES6/es2015 syntax create a function called BlogMeta that takes {metaInfo} as a parameter and returns a div.
+8 Inside the newly created div you can start to display your data
+* By default Export the component
+* Add a propType object on the BlogMeta component that has a property metaInfo with the value set to React.PropTypes.object.isRequired
+
+
+####
+
+
+
+```
+
+ import React from 'react';
+ require('./Blog-meta.css');
+
+
+
+ const BlogMeta = ({metaInfo}) => {
+     return (
+         <div>
+             <div>
+             <h2> display properties on the metaInfo object</h2>
+             <p> display properties on the metaInfo object  </p>
+             <h2>display properties on the metaInfo object</h2>
+             </div>
+         </div>
+     );
+ };
+
+ BlogMeta.propTypes = {
+     metaInfo: React.PropTypes.object.isRequired
+ };
+
+
+
+ export default BlogMeta
+
+
+```
+
+
+####
+
+
+
+
+```
+
+ import React from 'react';
+ require('./Blog-meta.css');
+
+
+
+ const BlogMeta = ({metaInfo}) => {
+     return (
+         <div>
+             <div>
+             <h2>{metaInfo.username}</h2>
+
+             </div>
+         </div>
+     );
+ };
+
+ BlogMeta.propTypes = {
+     metaInfo: React.PropTypes.object.isRequired
+ };
+
+
+
+ export default BlogMeta
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### Routing
 
@@ -224,62 +696,6 @@ export default (
 );
 ```
 
-### Home Component
-
-Our home component will be responsible for managing the different states of our app.
-
-* First, we need to set up our default state.
-  * We usually do this with empty data that will be populated later.
-  * The state will be passed down to all the children components.
-  * You can think of Container components as smart components that are responsible for getting the state
-    and then passing the state down to the children components.
-  * We will then access the state being passed to our children component via props.
-  * The children of a component are able to inherit the state via props.
-* You'll need to import some modules.
-  * First `import React from 'react'`
-  * You could also go ahead and import the rest of the components you'll be building.
-    * These should be a `PhotoGrid`, `Profile`, and `getPosts`.
-    * Also import your styles (with a `require('./Home.css')`).
-* Create a new component (`class Home extends React.Component`)
-* Here is where we'll start out with that empty state. Your first few lines should look something like:
-
-```javascript
-constructor(props){
-  super(props)
-  this.state = {
-    images : []
-  , user   : {}
-  , intro  : ''
-  }
-}
-```
-Down at the bottom, you'll want to set up your render function, and pass it `props`.
-
-```javascript
-render(props){
-  return (
-    <div className="main-home-controller">
-    </div>
-  )
-}
-```
-
-* And then `export default Home`
-* Since we have some (mostly empty) components already set up, you could go ahead and render these as well.
-
-```javascript
-<div className="main-home-controller">
-  <Photogrid imageInfo={ this.state.images } />
-  <Profile
-    user={ this.state.user }
-    intro={ this.state.intro }
-  />
-</div>
-```
-
---------
-
-## Day Two
 
 ### Lifecycle Hooks
 
