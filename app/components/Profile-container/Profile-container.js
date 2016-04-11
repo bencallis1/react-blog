@@ -4,9 +4,7 @@
 import React from 'react';
 import Profile from './Profile/Profile';
 import PhotoGrid from './Image-block/Image-block';
-import {getUserInfo,getPosts} from '../../utils/helpers'
 require('./Profile-container.css');
-
 
 
 class  ProfileContainer extends React.Component {
@@ -17,20 +15,6 @@ class  ProfileContainer extends React.Component {
             userInfo: {},
 
         }
-    }
-    componentDidMount(){
-        getUserInfo(this.props.params.userid).then(function(data){
-            this.setState({
-                userInfo: data.data
-            })
-        }.bind(this));
-
-        getPosts().then(function(data){
-            this.setState({
-                cardData: data.data
-            })
-        }.bind(this));
-
     }
 
 

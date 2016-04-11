@@ -1,5 +1,4 @@
 import React from 'react';
-import {usersBlogData} from '../../utils/helpers'
 import BlogImage from './Blog-image/Blog-image';
 import BlogMeta from './Blog-meta/Blog-meta';
 require('./Blog-intro-container.css');
@@ -14,18 +13,10 @@ class BlogIntroContainer extends React.Component {
         }
     }
 
-    componentDidMount(){
-        this.init()
-    }
 
-    init(){
+    // Write init method here
+    // Invoke usersBlogData
 
-        usersBlogData().then(function(data){
-            this.setState({
-                usersBlogData: data.data
-            })
-        }.bind(this));
-    }
 
     render(){
         return (
