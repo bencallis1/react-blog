@@ -19,7 +19,7 @@
 
 --------
 
-## Step 1
+## 1) Setting Up Our Project
 
 ### Setting Up Our Project
 
@@ -182,7 +182,7 @@ ReactDOM.render(
 
 
 
-## Step 2) Blog-feed
+## 1) Blog-feed
 
 ### Blog-Feed
 
@@ -669,7 +669,7 @@ We can do this by using the javascript map method.
 
 
 
-## Step 3) Blog-Profile
+## 1) Blog-Profile
 
 
 ### Blog-Profile
@@ -830,10 +830,6 @@ render(){
     }
 
 ```
-
-
-
-
 
 
 
@@ -1048,7 +1044,7 @@ export default PhotoGrid
 
 
 
-## Step 4) Axios
+## 2) Axios
 
 ### Helpers
 
@@ -1190,7 +1186,7 @@ export let usersBlogData = function () {
 
 
 
-## step 5) Importing Helper Functions
+## 2) Importing Helper Functions
 
 ### Import Helpers in BlogIntroContainer
 
@@ -1204,7 +1200,7 @@ export let usersBlogData = function () {
 
 
 
-## step 6) Life Cycle
+## 2) Life Cycle
 
 ### componentDidMount BlogIntroContainer
 
@@ -1356,7 +1352,7 @@ export let usersBlogData = function () {
 ```
 
 
-## Step 7)  Routing
+## 2)  Routing
 
 
 * Routing in React is a really vast topic, and there are a _lot_ of different ways to go about it.
@@ -1388,6 +1384,14 @@ export default (
 
 ```
 
+
+
+## 3)  Redux
+
+### Setting up redux
+
+* use npm to install redux
+*
 
 
 

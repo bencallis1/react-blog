@@ -1,4 +1,6 @@
 import React from 'react';
+import {increment,decrement} from '../../../Redux/Actions/counter';
+
 require('./Profile.css');
 
 
