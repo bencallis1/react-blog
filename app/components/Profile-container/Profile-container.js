@@ -7,6 +7,8 @@ import PhotoGrid from './Image-block/Image-block';
 import {getUserInfo,getPosts} from '../../utils/helpers'
 require('./Profile-container.css');
 
+
+
 class  ProfileContainer extends React.Component {
     constructor(props){
         super(props);
